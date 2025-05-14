@@ -20,13 +20,23 @@
 <body>
   <h1>Geräusche abspielen</h1>
 
-  <!-- Buttons -->
+  <!-- Buttons zum Abspielen der Geräusche -->
   <button onclick="playSound('sound1')">Camping</button>
   <button onclick="playSound('sound2')">Eisdiele</button>
   <button onclick="playSound('sound3')">Flugzeug</button>
   <button onclick="playSound('sound4')">Grill</button>
   <button onclick="playSound('sound5')">Schwimmen</button>
   <button onclick="playSound('sound6')">Strand</button>
+
+  <!-- Play- und Pause-Buttons für jedes Sound-Element -->
+  <div>
+    <button onclick="togglePlayPause('sound1')">Play/Pause Camping</button>
+    <button onclick="togglePlayPause('sound2')">Play/Pause Eisdiele</button>
+    <button onclick="togglePlayPause('sound3')">Play/Pause Flugzeug</button>
+    <button onclick="togglePlayPause('sound4')">Play/Pause Grill</button>
+    <button onclick="togglePlayPause('sound5')">Play/Pause Schwimmen</button>
+    <button onclick="togglePlayPause('sound6')">Play/Pause Strand</button>
+  </div>
 
   <!-- Audio-Elemente -->
   <audio id="sound1" src="https://sharonmabel.github.io/ForMary/camping.mp3.mp3"></audio>
@@ -37,18 +47,28 @@
   <audio id="sound6" src="https://sharonmabel.github.io/ForMary/strand.mp3.mp3"></audio>
 
   <script>
+    // Funktion zum Abspielen eines Sounds
     function playSound(id) {
       const sound = document.getElementById(id);
       if (!sound) return;
 
-      // Falls der Sound bereits spielt, pausieren und zurücksetzen
-      sound.pause();
-      sound.currentTime = 0;
-
-      // Versuch zu spielen, mit Fallback bei Fehler
       sound.play().catch(error => {
         console.error(`Fehler beim Abspielen von ${id}:`, error);
       });
+    }
+
+    // Funktion für Play/Pause: Wenn der Sound pausiert ist, wird er abgespielt, wenn er spielt, wird er pausiert
+    function togglePlayPause(id) {
+      const sound = document.getElementById(id);
+      if (!sound) return;
+
+      if (sound.paused) {
+        sound.play().catch(error => {
+          console.error(`Fehler beim Abspielen von ${id}:`, error);
+        });
+      } else {
+        sound.pause();
+      }
     }
   </script>
 </body>
