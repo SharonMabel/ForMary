@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Geräusche abspielen</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      margin: 10px;
+      padding: 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Geräusche abspielen</h1>
+
+  <!-- Buttons -->
+  <button onclick="playSound('sound1')">Camping</button>
+  <button onclick="playSound('sound2')">Eisdiele</button>
+  <button onclick="playSound('sound3')">Flugzeug</button>
+  <button onclick="playSound('sound4')">Grill</button>
+  <button onclick="playSound('sound5')">Schwimmen</button>
+  <button onclick="playSound('sound6')">Strand</button>
+
+  <!-- Audio-Elemente -->
+  <audio id="sound1" src="camping.mp3"></audio>
+  <audio id="sound2" src="eisdiele.mp3"></audio>
+  <audio id="sound3" src="flugzeug.mp3"></audio>
+  <audio id="sound4" src="grill.mp3"></audio>
+  <audio id="sound5" src="schwimmen.mp3"></audio>
+  <audio id="sound6" src="strand.mp3"></audio>
+
+  <script>
+    function playSound(id) {
+      const sound = document.getElementById(id);
+      sound.currentTime = 0;  // Setzt den Sound auf Anfang zurück
+      sound.play();
+    }
+  </script>
+</body>
+</html>
