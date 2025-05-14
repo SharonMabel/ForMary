@@ -29,18 +29,26 @@
   <button onclick="playSound('sound6')">Strand</button>
 
   <!-- Audio-Elemente -->
-  <audio id="sound1" src="camping.mp3"></audio>
-  <audio id="sound2" src="eisdiele.mp3"></audio>
-  <audio id="sound3" src="flugzeug.mp3"></audio>
-  <audio id="sound4" src="grill.mp3"></audio>
-  <audio id="sound5" src="schwimmen.mp3"></audio>
-  <audio id="sound6" src="strand.mp3"></audio>
+  <audio id="sound1" src="https://sharonmabel.github.io/ForMary/camping.mp3.mp3"></audio>
+  <audio id="sound2" src="https://sharonmabel.github.io/ForMary/eisdiele.mp3.mp3"></audio>
+  <audio id="sound3" src="https://sharonmabel.github.io/ForMary/flugzeug.mp3.mp3"></audio>
+  <audio id="sound4" src="https://sharonmabel.github.io/ForMary/grill.mp3.mp3"></audio>
+  <audio id="sound5" src="https://sharonmabel.github.io/ForMary/schwimmen.mp3.mp3"></audio>
+  <audio id="sound6" src="https://sharonmabel.github.io/ForMary/strand.mp3.mp3"></audio>
 
   <script>
     function playSound(id) {
       const sound = document.getElementById(id);
-      sound.currentTime = 0;  // Setzt den Sound auf Anfang zurück
-      sound.play();
+      if (!sound) return;
+
+      // Falls der Sound bereits spielt, pausieren und zurücksetzen
+      sound.pause();
+      sound.currentTime = 0;
+
+      // Versuch zu spielen, mit Fallback bei Fehler
+      sound.play().catch(error => {
+        console.error(`Fehler beim Abspielen von ${id}:`, error);
+      });
     }
   </script>
 </body>
